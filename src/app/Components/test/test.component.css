@@ -1,0 +1,22 @@
+.container{
+    height: 80px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   background-color: black;
+}
+.container1{
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.container2{
+    height: 20px;
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

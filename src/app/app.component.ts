@@ -26,12 +26,18 @@ import { routes } from './app.routes';
 })
 export class AppComponent  {
   title = 'Employee_Organization';
+
+  username:string = '' ;
+ keyAuth : any ;
   
  constructor(private keycloakService: KeycloakService,private router: Router) {
   }
  async ngOnInit(): Promise<void> {
   try {
     const authenticated = await this.keycloakService.init();
+   this.keyAuth= this.keycloakService;
+  this.username = this.keyAuth.keycloak.tokenParsed.given_name.toUpperCase();
+   
     console.log('Keycloak initialization successful. Authenticated:', authenticated);
   } catch (error) {
     console.error('Error during Keycloak initialization:', error);

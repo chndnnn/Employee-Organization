@@ -5,9 +5,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { KeycloakService } from './services/keycloak.service';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterModule, Routes} from '@angular/router';
 import { Router } from '@angular/router';
 import { routes } from './app.routes';
+import { MatToolbarModule } from '@angular/material/toolbar';
 //import { KeycloakService } from './keycloak.service';
 
 @Component({
@@ -20,7 +22,9 @@ import { routes } from './app.routes';
       MatButtonModule,
       MatIconModule,
       MatTooltipModule,
-    RouterModule
+    RouterModule,
+    MatSidenavModule,
+    MatToolbarModule
     ],
     providers:[KeycloakService]
 })

@@ -1,0 +1,79 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+  .formCard{
+    width: 900px;
+    margin-top: 10px;
+   margin-left: 100px;
+  }
+
+  
+  .example-full-width {
+    width: 200px;
+    margin-right: 5px;
+  }
+  
+  ::ng-deep .mat-form-field .mat-input-element {
+      color: gray;
+     
+  }
+  ::ng-deep .mat-form-field .mat-form-field-label {
+      color: gray!important;
+  }
+  ::ng-deep .mat-form-field .mat-form-field-underline {
+      background-color: slategray;
+  }
+  ::ng-deep .mat-form-field .mat-form-field-ripple {
+      background-color: slategray;
+  }
+  ::ng-deep .mat-form-field .mat-form-field-required-marker {
+      color: slategray;
+  }
+  
+  
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+      color: green!important;
+  }
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+      background-color: green;
+  }
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-required-marker {
+      color: green;
+  }
+  ::ng-deep .mat-form-field.mat-focused .mat-input-element {
+      color: green;
+  }
+  
+  
+  
+  ::ng-deep .mat-form-field.mat-form-field-invalid .mat-input-element {
+      color: red;
+  }
+  ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+      color: red!important;
+  }
+  ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
+      color: red;
+  }
+  ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+      background-color: red;
+  }
+.expicons{
+  margin-left: auto;
+  display: flex;
+}
+  .savebtn{
+    background-color: #cde1f7;
+    margin-top: -10px;
+    margin-left: 10px;
+  }
+  .my-panel { 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  } 
+  .fabicon{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+  }

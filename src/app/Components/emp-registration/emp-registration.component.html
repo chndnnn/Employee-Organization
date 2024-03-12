@@ -1,0 +1,118 @@
+
+<mat-accordion class="example-headers-align" multi>
+<mat-expansion-panel  [expanded]="isPanelOpen" hideToggle class="formCard">
+  <mat-expansion-panel-header>
+    <mat-panel-title (click)="$event.stopPropagation();">
+      <div class="bg-cde1f7 w-full p-1 rounded-lg"><h3 >Employee Register Form</h3></div>
+    <div class="expicons">  
+      <button mat-mini-fab class="fabicon" color="accent" (click)="accordion.openAll()"><mat-icon>person_add</mat-icon></button>
+      <button mat-mini-fab class="fabicon" color="accent"><mat-icon>refresh</mat-icon></button>
+      <button mat-mini-fab class="fabicon" color="accent" (click)="accordion.closeAll()"><mat-icon>close</mat-icon></button>
+    </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="registrationForm" class="example-form" novalidate>
+    <div class="form" fxLayout="row" fxLayoutAlign="space-around center" >
+      <mat-form-field class="example-full-width">
+        <mat-label>First-Name</mat-label>
+        <input
+          matInput
+          type="text"
+          id="firstname"
+          name="firstname"
+          required
+          placeholder="firstname"
+          formControlName="firstName"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Last-Name</mat-label>
+        <input
+          matInput
+          type="text"
+          id="lastname"
+          name="lastname"
+          required
+          placeholder="lastname"
+          formControlName="lastName"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Gender</mat-label>
+        <mat-select id="gender" name="gender" required placeholder="Gender" formControlName="gender">
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="other">Other</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>DOB</mat-label>
+        <input matInput [matDatepicker]="dp" placeholder="Date of Birth" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
+  </div>
+  <div class="form" fxLayout="row" fxLayoutAlign="space-around center" >
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        id="email"
+        name="email"
+        required
+        placeholder="email"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Phone</mat-label>
+      <input
+        matInput
+        type="number"
+        id="number"
+        name="number"
+        required
+        placeholder="number"
+        formControlName="phoneNumber"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Designation</mat-label>
+      <mat-select id="designation" name="designation" required placeholder="designation" formControlName="designation">
+        <mat-option value="softwareconsultant">Software Consultant</mat-option>
+        <mat-option value="seniorsoftwareconsultant">Senior Software Consultant</mat-option>
+        <mat-option value="sopport">Sopport Team</mat-option>
+        <mat-option value="teamlead">Team Lead</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <mat-label>Location</mat-label>
+      <input 
+      matInput 
+      type="text" 
+      id="location" 
+      name="location" 
+      required 
+      placeholder="location" 
+      formControlName="location"
+      />
+    </mat-form-field>
+   
+</div>
+<button mat-raised-button class="savebtn">Save</button>
+<button mat-raised-button class="savebtn">clear</button>
+
+  </form>
+</mat-expansion-panel>
+</mat-accordion>
+
+<div>
+  <ag-grid-angular
+  [rowData]="rowData"
+  [columnDefs]="colDefs">
+</ag-grid-angular>
+
+</div>
+    

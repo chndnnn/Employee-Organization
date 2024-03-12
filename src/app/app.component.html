@@ -1,5 +1,5 @@
 
-  <mat-toolbar color="primary" class="primary sticky">
+  <mat-toolbar class="primary sticky shadow-md bg-white rounded-lg">
     <button mat-icon-button (click)="sidenav.toggle()"> <mat-icon>menu</mat-icon></button>       
       <div class="ml-auto">
         <mat-icon class="mx-2" matTooltip="Call">call</mat-icon>
@@ -12,9 +12,9 @@
         <img src="assets/images/logo.png" alt="" style="height: 50px; padding: 2px;">
     </div>
    </mat-toolbar>
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav class="sidenav" mode="side">
-      <div class="mt-5 ml-10">
+  <mat-sidenav-container class="sidenav-container ">
+    <mat-sidenav #sidenav class="sidenav" mode="side" opened>
+      <div class="mt-5 ml-5">
         <div class="photo">
           <img src="../assets/images/logo.png" alt="" style=" margin-left: -24px;">
        </div>
@@ -22,7 +22,7 @@
            <h1><b>{{username}}</b></h1>
        </div>
       </div>
-      <div class="mt-5 ml-10">
+      <div class="mt-5 ml-5">
         <a href="#_" class="relative inline-flex items-center justify-start py-2 pl-4 pr-8 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-6 hover:pr-4 bg-gray-50 group">
           <span class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-red-600 group-hover:h-full"></span>
           <span class="absolute right-0 pr-2 duration-200 ease-out group-hover:translate-x-6">
@@ -38,23 +38,31 @@
           <span class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white" (click)="logout()">Logout</span>
       </a>
       </div>
-      <div class="mt-5 ml-10">
-        <a [routerLink]="['/welcome']" color="primary">
+      <div class="mt-5">
+        <a [routerLink]="['/welcome']" routerLinkActive="active-link" color="primary">
           <button mat-button>
             <mat-icon>home</mat-icon>
             <span class="hover:text-blue-400">Home</span>
           </button>
         </a>
       </div>
-      <div class="mt-5 ml-10">
-        <a [routerLink]="['/test']" color="primary">
+      <div class="">
+        <a [routerLink]="['/test']" routerLinkActive="active-link" color="primary">
           <button mat-button>
             <mat-icon>account_circle</mat-icon>
             <span class="hover:text-blue-400">Account</span>
           </button>
         </a>
       </div>
-      
+      <div class="">
+        <a [routerLink]="['/empregistration']" routerLinkActive="active-link">
+            <button mat-button>
+                <mat-icon>supervised_user_circle</mat-icon>
+                <span class="hover:text-blue-400">Registration</span>
+            </button>
+        </a>
+    </div>
+    
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

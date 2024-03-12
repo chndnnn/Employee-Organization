@@ -13,7 +13,6 @@ export class KeycloakService {
   constructor( private router:Router) { }
 
   init(): Promise<boolean> {
-    debugger;
     return new Promise<boolean>((resolve, reject) => {
       this.keycloak = new Keycloak(keycloakConfig);
       this.keycloak.init({

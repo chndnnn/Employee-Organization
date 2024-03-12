@@ -41,8 +41,6 @@ export class AppComponent  {
     const authenticated = await this.keycloakService.init();
    this.keyAuth= this.keycloakService;
   this.username = this.keyAuth.keycloak.tokenParsed.given_name.toUpperCase();
-   
-    console.log('Keycloak initialization successful. Authenticated:', authenticated);
   } catch (error) {
     console.error('Error during Keycloak initialization:', error);
   }

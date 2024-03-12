@@ -1,16 +1,33 @@
 
 .sidenav-container {
     height: 100%;
+    
     /* margin-top: 50px; */
   }
   
   .sidenav {
-    width: 200px;
-   
+    width: 150px;
+    background-color: #cde1f7;
+    position: fixed;
+    margin-top: 70px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border-right: none;
   }
+  /* In your component's CSS file or global styles */
+.mat-toolbar {
+  background-color: #cde1f7; 
+}
+
 .mat-toolbar.sticky {
   position: sticky;
   top: 0;
   z-index: 1000;
-  /* Add other sticky styles as needed */
+}
+
+.active-link {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2px;
+
 }

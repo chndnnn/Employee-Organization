@@ -6,5 +6,5 @@ import { EmpRegistrationComponent } from './Components/emp-registration/emp-regi
 export const routes: Routes = [
     {path:"test",component:TestComponent},
     {path:"welcome",component:WelcomeComponent},
-    {path:"empregistration",component:EmpRegistrationComponent}
+    {path:"empregistration",component:EmpRegistrationComponent},
 ];

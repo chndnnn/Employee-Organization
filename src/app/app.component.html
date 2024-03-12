@@ -62,7 +62,15 @@
             </button>
         </a>
     </div>
-    
+      <div class="mt-5 ml-10">
+        <a [routerLink]="['/tasks']" color="primary">
+          <button mat-button>
+            <mat-icon>AllInbox</mat-icon>
+            <span class="hover:text-blue-400">Tasks</span>
+          </button>
+        </a>
+      </div>
+      
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

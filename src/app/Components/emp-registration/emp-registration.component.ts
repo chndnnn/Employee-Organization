@@ -45,9 +45,13 @@ export class EmpRegistrationComponent {
     { make: "Toyota", model: "Corolla", price: 29600, electric: false },
   ];
   colDefs: ColDef[] = [
-    { field: "make" },
-    { field: "model" },
-    { field: "price" },
-    { field: "electric" }
+    { field: "First Name" },
+    { field: "Last Name" },
+    { field: "E-mail" },
+    { field: "Phone" },
+    { field: "DOB" },
+    { field: "Gender" },
+    { field: "Location" },
+    {field: "Designation" }
   ];
 }

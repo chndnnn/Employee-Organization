@@ -1,9 +1,10 @@
-<div class="mainContainer">
-  <div style="width: 100%;height: 30px;display: flex;" class="divContainer">
-   <button style="width: 80px" (click)="TabName='task'" [ngStyle]="{'background-color':TabName == 'task'?'#cde1f7':''}">Tasks</button>
-   <button style="width: 80px" (click)="TabName='assigned'" [ngStyle]="{'background-color':TabName == 'assigned'?'#cde1f7':''}">Assigned</button>
-   <button style="width: 90px;margin-left: 5px;" (click)="TabName='xyz'" [ngStyle]="{'background-color':(TabName != 'assigned' && TabName != 'task')?'#cde1f7':''}">Completed</button>
+<div class="mainContainer" [ngStyle]="{width:sideNavOnOrOff?'90%':'100%'}">
+  <div style="width: 100%;height: 30px;display: flex; background-color:#ecf0f5 ;" class="divContainer" >
+   <button style="width: 80px" (click)="TabName='task'" [ngStyle]="{'background-color':TabName == 'task'?'#cde1f7':''}">Tasks({{taskCount}})</button>
+   <button style="width: 100px;margin-left: 8px;" (click)="TabName='assigned'" [ngStyle]="{'background-color':TabName == 'assigned'?'#cde1f7':''}">Assigned({{assigneTtaskCount}})</button>
+   <button style="width: 80px;margin-left: 5px;" (click)="TabName='xyz'" [ngStyle]="{'background-color':(TabName != 'assigned' && TabName != 'task')?'#cde1f7':''}">Graphs</button>
   </div>
+  <div style="height: 95%;overflow: scroll;">
 @if(TabName == 'task'){
     <div [ngStyle]="{ 'opacity': assignedClick ? 0.3 : '' }">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -44,7 +45,7 @@
 
     <ng-container matColumnDef="Action">
       <th mat-header-cell *matHeaderCellDef> <b>Action</b> </th>
-      <td mat-cell *matCellDef="let element"> <button (click)="onButtonClick(element)">Assign</button> </td>
+      <td mat-cell *matCellDef="let element"> <button style="background-color: rgb(209, 199, 199); width: 70px; height: 30px; border-radius: 3px;" (click)="onButtonClick(element)">Assign</button> </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -55,19 +56,19 @@
 @if(assignedClick){
   <div class="popup">
     <p style="display: inline-block;margin-left:576px;background-color: rgb(189, 185, 185);border-radius: 50%;padding-left: 5px;padding-right: 5px;margin-top:5px;cursor: pointer;" (click)="assignedClick=false">x</p>
-    <h1 style="text-align: center;margin-bottom: 20px;"><b>Task name : {{taskname}}</b></h1>
+    <h1 style="text-align: center;margin-bottom: 20px;"><b>Task name : {{task.taskname}}</b></h1>
     <label style="margin-left: 5px;">Select Designation </label>
     <select id="emp" style="width:431px;height: 30px;border: 1px solid black;border-radius: 3px;" (change)="onselectChange($event)">
       <option value="select">---select---</option>
-      @for (item of DistinctEmpDesc; track item.empDesc  ;let index = $index) {
-        <option value={{item.empDesc}}>{{item.empDesc}}</option>
+      @for (item of DistinctEmpDesc; track item  ;let index = $index) {
+        <option value={{item}}>{{item}}</option>
       }
     </select><br><br>
     <label style="margin-left: 5px;">Select Employee </label>
-    <select id="emp" style="width:431px;height: 30px;border: 1px solid black;margin-left: 12px;border-radius: 3px;">
+    <select id="emp" style="width:431px;height: 30px;border: 1px solid black;margin-left: 12px;border-radius: 3px;" (change)="onEmployeeChange($event)" >
       <option value="select">---select---</option>
       @for (item of AllEmpData; track item.empid  ;let index = $index) {
-        <option value={{item.empName}}>{{item.empName}}</option>
+        <option value={{item.first_name}}>{{item.first_name}}</option>
       }
     </select>
     <br><br>
@@ -127,7 +128,12 @@
   </div>
 }
 @else {
-   <p>H22</p>
+  <div style="display:flex;">
+   <app-graphs [data1]="dataSource" ></app-graphs>
+   <app-assign-graph [data1]="dataSource1"></app-assign-graph>
+  </div> 
 }
 </div>
+</div>
+
  

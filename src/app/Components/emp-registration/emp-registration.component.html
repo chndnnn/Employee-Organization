@@ -3,7 +3,7 @@
 <mat-expansion-panel  [expanded]="isPanelOpen" hideToggle class="formCard">
   <mat-expansion-panel-header>
     <mat-panel-title (click)="$event.stopPropagation();">
-      <div class="bg-cde1f7 w-full p-1 rounded-lg"><h3 >Employee Register Form</h3></div>
+      <div class="headebg w-full p-1 rounded-lg"><h3 >Employee Register Form</h3></div>
     <div class="expicons">  
       <button mat-mini-fab class="fabicon" color="accent" (click)="accordion.openAll()"><mat-icon>person_add</mat-icon></button>
       <button mat-mini-fab class="fabicon" color="accent"><mat-icon>refresh</mat-icon></button>
@@ -108,11 +108,11 @@
 </mat-expansion-panel>
 </mat-accordion>
 
-<div>
+<div class=" p-5">
  <!-- The AG Grid component -->
  <ag-grid-angular
  class="ag-theme-quartz"
- style="height: 500px; width: 100%;"
+ style="height: 300px; width: 100%;"
  [rowData]="rowData"
  [columnDefs]="colDefs">
 </ag-grid-angular>

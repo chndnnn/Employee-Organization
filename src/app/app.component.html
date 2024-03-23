@@ -38,7 +38,7 @@
           <span class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white" (click)="logout()">Logout</span>
       </a>
       </div>
-      <div class="mt-5">
+      <div class="mt-5 font-bold">
         <a [routerLink]="['/welcome']" routerLinkActive="active-link" color="primary">
           <button mat-button>
             <mat-icon>home</mat-icon>
@@ -46,7 +46,7 @@
           </button>
         </a>
       </div>
-      <div class="">
+      <div class="font-bold">
         <a [routerLink]="['/test']" routerLinkActive="active-link" color="primary">
           <button mat-button>
             <mat-icon>account_circle</mat-icon>
@@ -54,7 +54,7 @@
           </button>
         </a>
       </div>
-      <div class="">
+      <div class="font-bold">
         <a [routerLink]="['/empregistration']" routerLinkActive="active-link">
             <button mat-button>
                 <mat-icon>supervised_user_circle</mat-icon>
@@ -62,6 +62,7 @@
             </button>
         </a>
     </div>
+
     <div class="">
       <a [routerLink]="['/tasks']" routerLinkActive="active-link">
           <button mat-button >

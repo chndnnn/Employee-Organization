@@ -36,18 +36,24 @@ export class EmpRegistrationComponent {
 
   // isPanelOpen = false;
 
-  // toggleExpansionPanel() {
-  //   this.isPanelOpen = !this.isPanelOpen;
-  // }
-  // rowData = [
-  //   { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-  //   { make: "Ford", model: "F-Series", price: 33850, electric: false },
-  //   { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-  // ];
-  // colDefs: ColDef[] = [
-  //   { field: "make" },
-  //   { field: "model" },
-  //   { field: "price" },
-  //   { field: "electric" }
-  // ];
+
+  toggleExpansionPanel() {
+    this.isPanelOpen = !this.isPanelOpen;
+  }
+  rowData = [
+    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
+    { make: "Ford", model: "F-Series", price: 33850, electric: false },
+    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+  ];
+  colDefs: ColDef[] = [
+    { field: "First Name" },
+    { field: "Last Name" },
+    { field: "E-mail" },
+    { field: "Phone" },
+    { field: "DOB" },
+    { field: "Gender" },
+    { field: "Location" },
+    {field: "Designation" }
+  ];
+
 }

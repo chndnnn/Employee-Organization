@@ -10,6 +10,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { Router } from '@angular/router';
 import { routes } from './app.routes';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { GeneralServicesService } from './services/general-services.service';
 //import { KeycloakService } from './keycloak.service';
 
 @Component({
@@ -33,8 +34,10 @@ export class AppComponent  {
 
   username:string = '' ;
  keyAuth : any ;
+
+ Data : boolean = true ;
   
- constructor(private keycloakService: KeycloakService,private router: Router) {
+ constructor(private keycloakService: KeycloakService,private router: Router ,private service:GeneralServicesService) {
   }
  async ngOnInit(): Promise<void> {
   try {
@@ -47,6 +50,11 @@ export class AppComponent  {
 }
   logout(){
     this.keycloakService.logout(); 
+  }
+
+  newFunction(){
+    this.Data = !this.Data
+    this.service.myDataFunction(this.Data)
   }
 
 }

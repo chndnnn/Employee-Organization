@@ -1,6 +1,16 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
 
+
+.ag-theme-quartz {
+  --ag-header-background-color: #48929b;
+  --ag-odd-row-background-color: rgb(0, 0, 0, 0.03);
+  --ag-font-size: 17px;
+  --ag-font-family: monospace;
+}
+.headebg{
+  background-color:#cde1f7 ;
+}
   .formCard{
     width: 900px;
     margin-top: 10px;

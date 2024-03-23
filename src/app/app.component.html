@@ -1,6 +1,6 @@
 
   <mat-toolbar class="primary sticky shadow-md bg-white rounded-lg">
-    <button mat-icon-button (click)="sidenav.toggle()"> <mat-icon>menu</mat-icon></button>       
+    <button mat-icon-button (click)="sidenav.toggle()" (click)="newFunction()"> <mat-icon>menu</mat-icon></button>       
       <div class="ml-auto">
         <mat-icon class="mx-2" matTooltip="Call">call</mat-icon>
         <mat-icon class="mx-2" matTooltip="SMS">sms</mat-icon>
@@ -62,14 +62,14 @@
             </button>
         </a>
     </div>
-      <div class="mt-5 ml-10">
-        <a [routerLink]="['/tasks']" color="primary">
-          <button mat-button>
-            <mat-icon>AllInbox</mat-icon>
-            <span class="hover:text-blue-400">Tasks</span>
+    <div class="">
+      <a [routerLink]="['/tasks']" routerLinkActive="active-link">
+          <button mat-button >
+              <mat-icon>assignment</mat-icon>
+              <span  class="hover:text-blue-400">Tasks</span>
           </button>
-        </a>
-      </div>
+      </a>
+  </div>
       
     </mat-sidenav>
     <mat-sidenav-content>

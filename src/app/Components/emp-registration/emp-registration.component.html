@@ -1,13 +1,14 @@
 
 <mat-accordion class="example-headers-align" multi>
-<mat-expansion-panel  [expanded]="isPanelOpen" hideToggle class="formCard">
+<mat-expansion-panel  hideToggle class="formCard">
   <mat-expansion-panel-header>
     <mat-panel-title (click)="$event.stopPropagation();">
       <div class="headebg w-full p-1 rounded-lg"><h3 >Employee Register Form</h3></div>
     <div class="expicons">  
       <button mat-mini-fab class="fabicon" color="accent" (click)="accordion.openAll()"><mat-icon>person_add</mat-icon></button>
-      <button mat-mini-fab class="fabicon" color="accent"><mat-icon>refresh</mat-icon></button>
+      <button mat-mini-fab class="fabicon" color="accent" (click)="refreshPage()"><mat-icon>refresh</mat-icon></button>
       <button mat-mini-fab class="fabicon" color="accent" (click)="accordion.closeAll()"><mat-icon>close</mat-icon></button>
+      <button mat-mini-fab class="fabicon" color="accent" (click)=" deleteEmp()" [disabled]="!isDeleteButtonEnabled"><mat-icon>delete_forever</mat-icon></button>
     </div>
     </mat-panel-title>
   </mat-expansion-panel-header>
@@ -18,11 +19,11 @@
         <input
           matInput
           type="text"
-          id="firstname"
-          name="firstname"
+          id="first_name"
+          name="first_name"
           required
           placeholder="firstname"
-          formControlName="firstName"
+          formControlName="first_name"
         />
       </mat-form-field>
       <mat-form-field class="example-full-width">
@@ -30,11 +31,11 @@
         <input
           matInput
           type="text"
-          id="lastname"
-          name="lastname"
+          id="last_name"
+          name="last_name"
           required
           placeholder="lastname"
-          formControlName="lastName"
+          formControlName="last_name"
         />
       </mat-form-field>
       <mat-form-field class="example-full-width">
@@ -101,20 +102,23 @@
     </mat-form-field>
    
 </div>
-<button mat-raised-button class="savebtn">Save</button>
-<button mat-raised-button class="savebtn">clear</button>
+<button mat-raised-button class="savebtn" (click)=" onSave()">Save</button>
+<button mat-raised-button class="savebtn" (click)="clear()">clear</button>
 
   </form>
 </mat-expansion-panel>
 </mat-accordion>
 
 <div class=" p-5">
- <!-- The AG Grid component -->
  <ag-grid-angular
  class="ag-theme-quartz"
  style="height: 300px; width: 100%;"
  [rowData]="rowData"
- [columnDefs]="colDefs">
-</ag-grid-angular>
+ [columnDefs]="colDefs"
+ [rowSelection]="rowSelection"
+ [autoSizeStrategy]="autoSizeStrategy"
+ (selectionChanged)="onSelectionChanged($event)"
+ > 
+</ag-grid-angular>  
 </div>
     

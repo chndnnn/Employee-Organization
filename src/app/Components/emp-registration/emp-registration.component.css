@@ -8,6 +8,11 @@
   --ag-font-size: 17px;
   --ag-font-family: monospace;
 }
+/* Custom CSS to reduce the header height */
+.ag-header-cell-label {
+  height: 30px; /* Adjust the height as per your requirement */
+}
+
 .headebg{
   background-color:#cde1f7 ;
 }

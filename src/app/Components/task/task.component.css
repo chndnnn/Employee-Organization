@@ -26,6 +26,6 @@
 .mat-mdc-header-row{
     position: sticky;
     top: 0;
-    background-color: white; /* Optional: to make it more visible */
+    background-color: #5aa4ae; /* Optional: to make it more visible */
     z-index: 1000; /* Adjust as needed */
   }

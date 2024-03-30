@@ -43,6 +43,17 @@ deleteTask(data:any){
   return this.http.delete(`http://127.0.0.1:3000/employee/backend/deleteData/${data}`)
 }
 
+updateTaskData(data:any){
+  return this.http.patch("http://127.0.0.1:3000/employee/backend/updateTaskData",data)
 }
 
+createTaskData(Data:any){
+  return this.http.post('http://127.0.0.1:3000/employee/backend/createTaskData',Data)
+}
 
+updateSerialNumber(data:any){
+  return this.http.patch('http://127.0.0.1:3000/employee/backend/updateSerialNumber',data)
+
+}
+
+}

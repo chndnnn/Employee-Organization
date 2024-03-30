@@ -1,18 +1,6 @@
-<div class="container1">
-<h1>My TO-DO list</h1>
-</div>
-<div class="container">
-<input type="text" style="height: 50px; width:60% ; margin-left: 10px;">
-<button style="height: 56px; width:20%" (click)="submitSearch()">search</button>
-</div>
-<!-- <div class="container2" *ngFor="let item of myWork">
-<p>item</p>
-</div> -->
-@for (item of myWork; track item) {
-    <div class="container2">
-        <p>{{item}}</p>
-        </div> 
-  } @empty {
-    Empty list of users.
-  }
+<!-- <h2 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>YOUR ACCOUNT DEAILS</h2> -->
 
+<div class="head">
+<div><img src="assets/images/profile.png" alt="" style="width:170px; height: 170px; margin-left: 200px;"></div>
+
+</div>

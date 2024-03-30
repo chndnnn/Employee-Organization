@@ -1,22 +1,11 @@
-.container{
-    height: 80px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-   background-color: black;
-}
-.container1{
-    height: 40px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.container2{
-    height: 20px;
-    border: 1px solid green;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+.head {
+    width: 600px;
+    height: 400px;
+    background: #cde1f7;
+    position: fixed;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border-right: none;
+    margin-left: 200px;
+    margin-top: 40px;
+  }

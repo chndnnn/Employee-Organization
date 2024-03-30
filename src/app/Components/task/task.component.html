@@ -1,139 +1,181 @@
 <div class="mainContainer" [ngStyle]="{width:sideNavOnOrOff?'90%':'100%'}">
-  <div style="width: 100%;height: 30px;display: flex; background-color:#ecf0f5 ;" class="divContainer" >
-   <button style="width: 80px" (click)="TabName='task'" [ngStyle]="{'background-color':TabName == 'task'?'#cde1f7':''}">Tasks({{taskCount}})</button>
-   <button style="width: 100px;margin-left: 8px;" (click)="TabName='assigned'" [ngStyle]="{'background-color':TabName == 'assigned'?'#cde1f7':''}">Assigned({{assigneTtaskCount}})</button>
-   <button style="width: 80px;margin-left: 5px;" (click)="TabName='xyz'" [ngStyle]="{'background-color':(TabName != 'assigned' && TabName != 'task')?'#cde1f7':''}">Graphs</button>
+  <div style="width: 100%;height: 30px;display: flex; background-color:#ecf0f5 ;" class="divContainer">
+    <button style="width: 80px" (click)="onTaskTabClicked()"
+      [ngStyle]="{'background-color':TabName == 'task'?'#cde1f7':''}">Tasks({{taskCount}})</button>
+    <button style="width: 100px;margin-left: 8px;" (click)="TabName='assigned'"
+      [ngStyle]="{'background-color':TabName == 'assigned'?'#cde1f7':''}">Assigned({{assigneTtaskCount}})</button>
+    <button style="width: 80px;margin-left: 5px;" (click)="TabName='xyz'"
+      [ngStyle]="{'background-color':(TabName != 'assigned' && TabName != 'task')?'#cde1f7':''}">Graphs</button>
+      <button style="position: absolute;right: 100px;top:3px; background-color: #cde1f7;"
+      [hidden]="TabName !== 'task' || !editButtonClick || !showSave" (click)="onSaveClick()"><mat-icon>save</mat-icon></button>
+    <button style="position: absolute;right: 70px;top:3px; background-color: #cde1f7;"
+      [hidden]="TabName !== 'task' || !enableEditing" (click)="onEditButtonClick()"><mat-icon>edit</mat-icon></button>
+    <button style="position: absolute;right: 40px;top:3px; background-color: #cde1f7;"
+      [hidden]="TabName !== 'task' || !enableDeleting" (click)="onDeleteClick()"><mat-icon>delete</mat-icon></button>
+    <button style="position: absolute;left: 280px;top:3px;" [hidden]="TabName !== 'task' || enableDeleting" (click)="onCreateClick()"><mat-icon>note_add</mat-icon></button>
+    <button style="position: absolute;left: 280px;top:3px;" [hidden]="TabName !== 'task' || !enableDeleting" (click)="onCancelClick()"><mat-icon>cancel</mat-icon></button>
   </div>
+
   <div style="height: 95%;overflow: scroll;">
-@if(TabName == 'task'){
+    @if(TabName == 'task'){
     <div [ngStyle]="{ 'opacity': assignedClick ? 0.3 : '' }">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!--- Note that these columns can be defined in any order.
+        <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- Position Column -->
-    <ng-container matColumnDef="taskid">
-      <th mat-header-cell *matHeaderCellDef><b>Task ID</b> </th>
-      <td mat-cell *matCellDef="let element"> {{element.taskid}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="taskname">
-      <th mat-header-cell *matHeaderCellDef> <b>Task Name</b> </th>
-      <td mat-cell *matCellDef="let element"> {{element.taskname}} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="taskdesc">
-      <th mat-header-cell *matHeaderCellDef> <b>Task Description</b></th>
-      <td mat-cell *matCellDef="let element"> {{element.taskdesc}} </td>
-    </ng-container>
-  
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="priority">
-      <th mat-header-cell *matHeaderCellDef> <b>Priority</b> </th>
-      <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
-    </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="checkbox">
+          <th mat-header-cell *matHeaderCellDef><b><mat-icon>check_circle</mat-icon></b> </th>
+          <td mat-cell *matCellDef="let element">
+            <input type="checkbox" style="margin-left: 7px;" (change)="onCheckBoxChnage($event,element)" #checkboxRef>
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="createdAt">
-      <th mat-header-cell *matHeaderCellDef> <b>Created At</b> </th>
-      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
+        <ng-container matColumnDef="taskid">
+          <th mat-header-cell *matHeaderCellDef><b>Task ID</b> </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.taskid}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef> <b>Action</b> </th>
-      <td mat-cell *matCellDef="let element"> <button style="background-color: rgb(209, 199, 199); width: 70px; height: 30px; border-radius: 3px;" (click)="onButtonClick(element)">Assign</button> </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
+        <!-- Name Column -->
+        <ng-container matColumnDef="taskname">
+          <th mat-header-cell *matHeaderCellDef> <b>Task Name</b> </th>
+          <td mat-cell *matCellDef="let element"> 
+            @if(editButtonClick && element.editable){
+              <input type="text" value="{{element.taskname}}" style="border:1px solid black" [(ngModel)]="editedTakname">
+            }@else{
+              {{element.taskname}}
+            }</td>
+          
+        </ng-container>
 
-@if(assignedClick){
-  <div class="popup">
-    <p style="display: inline-block;margin-left:576px;background-color: rgb(189, 185, 185);border-radius: 50%;padding-left: 5px;padding-right: 5px;margin-top:5px;cursor: pointer;" (click)="assignedClick=false">x</p>
-    <h1 style="text-align: center;margin-bottom: 20px;"><b>Task name : {{task.taskname}}</b></h1>
-    <label style="margin-left: 5px;">Select Designation </label>
-    <select id="emp" style="width:431px;height: 30px;border: 1px solid black;border-radius: 3px;" (change)="onselectChange($event)">
-      <option value="select">---select---</option>
-      @for (item of DistinctEmpDesc; track item  ;let index = $index) {
+        <ng-container matColumnDef="taskdesc">
+          <th mat-header-cell *matHeaderCellDef> <b>Task Description</b></th>
+          <td mat-cell *matCellDef="let element"> 
+            @if(editButtonClick && element.editable){
+              <input type="text" value="{{element.taskdesc}}" style="border:1px solid black" [(ngModel)]="editedTakDesc">
+            }@else{
+              {{element.taskdesc}} 
+            } </td>
+        </ng-container>
+
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef> <b>Priority</b> </th>
+          <td mat-cell *matCellDef="let element"> 
+            @if(editButtonClick && element.editable){
+              <input type="text" value="{{element.priority}}" style="border:1px solid black" [(ngModel)]="editedPriority">
+            }@else{
+              {{element.priority}} 
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef> <b>Created At</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> <b>Action</b> </th>
+          <td mat-cell *matCellDef="let element"> <button
+              style="background-color: rgb(209, 199, 199); width: 70px; height: 30px; border-radius: 3px;"
+              (click)="onButtonClick(element)" [disabled]="!enableEditing || !element.editable">@if(!element.iseditable1){Assign}@else{save}</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    @if(assignedClick){
+    <div class="popup">
+      <p style="display: inline-block;margin-left:576px;background-color: rgb(189, 185, 185);border-radius: 50%;padding-left: 5px;padding-right: 5px;margin-top:5px;cursor: pointer;"
+        (click)="assignedClick=false">x</p>
+      <h1 style="text-align: center;margin-bottom: 20px;"><b>Task name : {{task.taskname}}</b></h1>
+      <label style="margin-left: 5px;">Select Designation </label>
+      <select id="emp" style="width:431px;height: 30px;border: 1px solid black;border-radius: 3px;"
+        (change)="onselectChange($event)">
+        <option value="select">---select---</option>
+        @for (item of DistinctEmpDesc; track item ;let index = $index) {
         <option value={{item}}>{{item}}</option>
-      }
-    </select><br><br>
-    <label style="margin-left: 5px;">Select Employee </label>
-    <select id="emp" style="width:431px;height: 30px;border: 1px solid black;margin-left: 12px;border-radius: 3px;" (change)="onEmployeeChange($event)" >
-      <option value="select">---select---</option>
-      @for (item of AllEmpData; track item.empid  ;let index = $index) {
+        }
+      </select><br><br>
+      <label style="margin-left: 5px;">Select Employee </label>
+      <select id="emp" style="width:431px;height: 30px;border: 1px solid black;margin-left: 12px;border-radius: 3px;"
+        (change)="onEmployeeChange($event)">
+        <option value="select">---select---</option>
+        @for (item of AllEmpData; track item.empid ;let index = $index) {
         <option value={{item.first_name}}>{{item.first_name}}</option>
-      }
-    </select>
-    <br><br>
-    <button style="width:278px;height: 30px;background-color: rgb(27, 81, 27);margin-left: 165px;margin-top: 10px;border:1px solid green;border-radius: 2px;color: white;" (click)="onAssignClick()">Assign</button>
-  </div>
-}
-}
-@else if (TabName == 'assigned') {
-  <div>
-    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
-  
-      <!--- Note that these columns can be defined in any order.
+        }
+      </select>
+      <br><br>
+      <button
+        style="width:278px;height: 30px;background-color: rgb(27, 81, 27);margin-left: 165px;margin-top: 10px;border:1px solid green;border-radius: 2px;color: white;"
+        (click)="onAssignClick()">Assign</button>
+    </div>
+    }
+    }
+    @else if (TabName == 'assigned') {
+    <div>
+      <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
-    
-      <!-- Position Column -->
-      <ng-container matColumnDef="taskid">
-        <th mat-header-cell *matHeaderCellDef><b>Task ID</b> </th>
-        <td mat-cell *matCellDef="let element"> {{element.taskid}} </td>
-      </ng-container>
-    
-      <!-- Name Column -->
-      <ng-container matColumnDef="taskname">
-        <th mat-header-cell *matHeaderCellDef> <b>Task Name</b> </th>
-        <td mat-cell *matCellDef="let element"> {{element.taskname}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="taskdesc">
-        <th mat-header-cell *matHeaderCellDef> <b>Task Description</b></th>
-        <td mat-cell *matCellDef="let element"> {{element.taskdesc}} </td>
-      </ng-container>
-    
-    
-      <!-- Weight Column -->
-      <ng-container matColumnDef="priority">
-        <th mat-header-cell *matHeaderCellDef> <b>Priority</b> </th>
-        <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef> <b>Created At</b> </th>
-        <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
-      </ng-container>
 
-      <ng-container matColumnDef="assignedAt">
-        <th mat-header-cell *matHeaderCellDef> <b>Assigned At</b> </th>
-        <td mat-cell *matCellDef="let element"> {{element.assignedAt}} </td>
-      </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="taskid">
+          <th mat-header-cell *matHeaderCellDef><b>Task ID</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.taskid}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="assignedTo">
-        <th mat-header-cell *matHeaderCellDef> <b>Assigned To</b> </th>
-        <td mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
-      </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
-    </table>
+        <!-- Name Column -->
+        <ng-container matColumnDef="taskname">
+          <th mat-header-cell *matHeaderCellDef> <b>Task Name</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.taskname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="taskdesc">
+          <th mat-header-cell *matHeaderCellDef> <b>Task Description</b></th>
+          <td mat-cell *matCellDef="let element"> {{element.taskdesc}} </td>
+        </ng-container>
+
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef> <b>Priority</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef> <b>Created At</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="assignedAt">
+          <th mat-header-cell *matHeaderCellDef> <b>Assigned At</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.assignedAt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="assignedTo">
+          <th mat-header-cell *matHeaderCellDef> <b>Assigned To</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+    </div>
+    }
+    @else {
+    <div style="display:flex;">
+      <app-graphs [data1]="dataSource"></app-graphs>
+      <app-assign-graph [data1]="dataSource1"></app-assign-graph>
+    </div>
+    }
   </div>
-}
-@else {
-  <div style="display:flex;">
-   <app-graphs [data1]="dataSource" ></app-graphs>
-   <app-assign-graph [data1]="dataSource1"></app-assign-graph>
-  </div> 
-}
 </div>
-</div>
-
- 

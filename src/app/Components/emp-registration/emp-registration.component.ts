@@ -17,6 +17,7 @@ import { GeneralServicesService } from '../../services/general-services.service'
 import { SelectionChangedEvent } from 'ag-grid-community';
 import { SizeColumnsToFitGridStrategy } from 'ag-grid-community';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-emp-registration',
   standalone: true,
@@ -103,18 +104,39 @@ export class EmpRegistrationComponent {
 
   onSave() {
     if (this.registrationForm.valid) {
-      this.HttpServicesService.addEmployee(this.registrationForm.value).subscribe(
-        response => {
-          this.GeneralServicesService.openSnackBar('Employee Data Added sucessfully!.', '');
-          this.registrationForm.reset();
-          this.getAllEmployee();
-        },
-        error => {
-          this.GeneralServicesService.openSnackBar('Error adding employee.', '');
+      Swal.fire({
+        title: "Do you want to save the Details?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.HttpServicesService.addEmployee(this.registrationForm.value).subscribe(
+            response => {
+              if(response){
+                Swal.fire({
+                  text: "Employee Registration is sucessful and Details sent to E-mail",
+                  icon: "success"
+                });
+                this.registrationForm.reset();
+                this.getAllEmployee();
+               
+              }else{
+                this.GeneralServicesService.openSnackBar('Error adding employee.', '');
+              }
+              
+            }, error => {
+              this.GeneralServicesService.openSnackBar('Error adding employee.', '');
+            }
+            )
+          //Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
         }
-      );
+      });
     } else {
-      console.error('Invalid form data. Please check again.');
+      this.GeneralServicesService.openSnackBar('Invalid form data. Please check again.','');
     }
   }
 
@@ -142,15 +164,29 @@ export class EmpRegistrationComponent {
 
   deleteEmp() {
     const isDelete = this.selectedRows.map(row => row.emp_id);
-    this.HttpServicesService.deleteEmployee(isDelete).subscribe((response: any) => {
-      if (response) {
-        this.GeneralServicesService.openSnackBar('Employee Deleted!.', '');
-        this.getAllEmployee();
-      } (error: any) => {
-        this.GeneralServicesService.openSnackBar('Error adding employee.', '');
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+  
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.HttpServicesService.deleteEmployee(isDelete).subscribe((response: any) => {
+          if (response) {
+            this.GeneralServicesService.openSnackBar('Employee Deleted!.', '');
+            this.getAllEmployee();
+          } (error: any) => {
+            this.GeneralServicesService.openSnackBar('Error adding employee.', '');
+          }
+    
+        })
       }
-
-    })
+    });
+   
 
   }
 }

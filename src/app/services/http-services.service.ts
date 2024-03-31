@@ -55,5 +55,8 @@ updateSerialNumber(data:any){
   return this.http.patch('http://127.0.0.1:3000/employee/backend/updateSerialNumber',data)
 
 }
+sendEmail(enrollmentData: any) {
+  return this.http.post(`http://127.0.0.1:3000/employee/backend/sendMail`, enrollmentData);
+}
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -58,5 +58,8 @@ updateSerialNumber(data:any){
 sendEmail(enrollmentData: any) {
   return this.http.post(`http://127.0.0.1:3000/employee/backend/sendMail`, enrollmentData);
 }
-
+getAllAssignTaskForUser(username: any): Observable<any> {
+  return this.http.post('http://127.0.0.1:3000/employee/backend/getAllAssignTaskForUser', {username});
 }
+}
+ 

@@ -1,0 +1,50 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+
+.ag-theme-quartz {
+  --ag-header-background-color: #8dbff4;
+  --ag-odd-row-background-color: rgb(0, 0, 0, 0.03);
+  --ag-font-size: 17px;
+  --ag-font-family: monospace;
+}
+.ag-header-cell-label {
+  height: 15px; 
+}
+.example-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+  }
+  
+  .form-container {
+    width: 300px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  .example-card {
+    max-width: 400px;
+    margin:auto;
+    margin-top: 50px;
+  }
+
+  .savebtn {
+   margin-left: 20px;
+  }
+  .head {
+    background-color: #f0f0f0; /* Background color */
+    border-bottom: 1px solid #ccc; /* Bottom border for separation */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    margin-top: 10px;
+  }
+  

@@ -5,12 +5,13 @@ import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { EmpRegistrationComponent } from './Components/emp-registration/emp-registration.component';
 
 import { TaskComponent } from './Components/task/task.component';
+import { UserLoginComponent } from './Components/user-login/user-login.component';
 
 
 export const routes: Routes = [
     {path:"test",component:TestComponent},
     {path:"welcome",component:WelcomeComponent},
-
     {path:"empregistration",component:EmpRegistrationComponent},
-    {path:"tasks",component:TaskComponent}
+    {path:"tasks",component:TaskComponent},
+    {path:"userlogin",component:UserLoginComponent}
 ];

@@ -7,22 +7,24 @@
   
   .sidenav {
     width: 150px;
-    background-color: #cde1f7;
+    background-color: #486fee;
     position: fixed;
-    margin-top: 70px;
+    margin-top: 45px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     border-right: none;
   }
   /* In your component's CSS file or global styles */
 .mat-toolbar {
-  background-color: #cde1f7; 
+  background-color: #486fee; 
+  color: #fff;
 }
 
 .mat-toolbar.sticky {
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 40px
 }
 
 /* .active-link {
@@ -44,7 +46,7 @@
   bottom: 0;
   width: 100%;
   height: 3px; /* Adjust thickness of the underline */
-  background-color: #48929b; /* Initial color of the underline */
+  background-color: red; /* Initial color of the underline */
   border-radius: 5px; /* Adjust the border radius if needed */
   transition: width 0.3s ease, background-color 0.3s ease; /* Animation duration and easing */
 }

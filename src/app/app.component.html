@@ -14,7 +14,7 @@
    </mat-toolbar>
   <mat-sidenav-container class="sidenav-container ">
     <mat-sidenav #sidenav class="sidenav" mode="side" opened>
-      <div class="mt-5 ml-5">
+      <div class="mt-5 ml-5  text-white">
         <div class="photo">
           <img src="../assets/images/logo.png" alt="" style=" margin-left: -24px;">
        </div>
@@ -42,7 +42,7 @@
         <a [routerLink]="['/welcome']" routerLinkActive="active-link" color="primary">
           <button mat-button>
             <mat-icon>home</mat-icon>
-            <span class="hover:text-blue-400">Home</span>
+            <span class="hover:text-blue-400 text-white">Home</span>
           </button>
         </a>
       </div>
@@ -50,7 +50,7 @@
         <a [routerLink]="['/test']" routerLinkActive="active-link" color="primary">
           <button mat-button>
             <mat-icon>account_circle</mat-icon>
-            <span class="hover:text-blue-400">Account</span>
+            <span class="hover:text-blue-400  text-white">Account</span>
           </button>
         </a>
       </div>
@@ -58,19 +58,27 @@
         <a [routerLink]="['/empregistration']" routerLinkActive="active-link">
             <button mat-button>
                 <mat-icon>supervised_user_circle</mat-icon>
-                <span class="hover:text-blue-400">Registration</span>
+                <span class="hover:text-blue-400  text-white">Registration</span>
             </button>
         </a>
     </div>
 
-    <div class="">
+    <div class="font-bold">
       <a [routerLink]="['/tasks']" routerLinkActive="active-link">
           <button mat-button >
               <mat-icon>assignment</mat-icon>
-              <span  class="hover:text-blue-400">Tasks</span>
+              <span  class="hover:text-blue-400  text-white">Tasks</span>
           </button>
       </a>
   </div>
+  <div class="font-bold">
+    <a [routerLink]="['/userlogin']" routerLinkActive="active-link">
+        <button mat-button >
+            <mat-icon>fingerprint</mat-icon>
+            <span  class="hover:text-blue-400  text-white">My Tasks</span>
+        </button>
+    </a>
+</div>
       
     </mat-sidenav>
     <mat-sidenav-content>

@@ -29,3 +29,11 @@
     background-color: #5aa4ae; /* Optional: to make it more visible */
     z-index: 1000; /* Adjust as needed */
   }
+  .head {
+    background-color: #f0f0f0; /* Background color */
+    border-bottom: 1px solid #ccc; /* Bottom border for separation */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    margin-top: 10px;
+  }

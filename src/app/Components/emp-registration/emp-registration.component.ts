@@ -78,6 +78,7 @@ export class EmpRegistrationComponent {
     { field: 'gender', headerName: 'Gender' },
     { field: 'location', headerName: 'Location' },
     { field: 'designation', headerName: 'Designation' },
+    //{ field: 'password', headerName: 'Password' },
   ];
 
 
@@ -151,8 +152,6 @@ export class EmpRegistrationComponent {
           console.error('Error occurred:', response.error);
         } else {
           this.rowData = response.data;
-          const data = response.data;
-          console.log(data);
         }
       },
       (error: any) => {
